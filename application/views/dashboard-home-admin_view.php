@@ -61,7 +61,7 @@ switch ($active_filter) {
 						  </div>
 						  <div class="mt-2 pt-3 pb-4 pl-4 pr-2 ml-2">
 						  	<h3 class="p-0 m-0 f-bold"><?php echo highlight_phrase(word_limiter($post['post_title'], 100),$keyword_here, '<span style="font-weight:bold;">', '</span>');?></h3>
-						  	<p class="card-text pt-1"><small class="text-muted"><?php echo $post['account_username'];?> | Posted at 10-24-2017 16:45</small></p>
+						  	<p class="card-text pt-1"><small class="text-muted"><?php echo $post['account_username'];?> | Posted at <?php echo $post['post_dateCreated'];?></small></p>
 								  	<p><?php echo highlight_phrase(word_limiter($post['post_body'], 100),$keyword_here, '<span style="font-weight:bold;">', '</span>');?></p>
 						  	<button type="button" class="btn btn-post f-normal c-raduis float-right mr-5">Read More</button>
 						  </div>
@@ -80,7 +80,7 @@ switch ($active_filter) {
 		<div class="mb-3 col-11 card pl-0 pr-0 mx-auto shadow-light c-raduis pr-2">
 		  <div class="card-body pt-5 p-4">
 		    <h4 class=""><strong><?php echo highlight_phrase(word_limiter($post['post_title'], 100),$keyword_here, '<span style="font-weight:bold;">', '</span>');?></strong></h4>
-		    <p class="card-text"><small class="text-muted"><em><?php echo $post['account_username'];?> | Posted at 10-24-2017 16:45</em></small></p>
+		    <p class="card-text"><small class="text-muted"><em><?php echo $post['account_username'];?> | Posted at <?php echo $post['post_dateCreated'];?></em></small></p>
 		    <p><?php echo highlight_phrase(word_limiter($post['post_body'], 100),$keyword_here, '<span style="font-weight:bold;">', '</span>');?></p>
 		    <button type="button" class="btn mt-3 btn-post f-normal c-raduis float-right mr-4">Read More</button>
 		  </div>
