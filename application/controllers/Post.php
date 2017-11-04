@@ -52,22 +52,20 @@ $this->load->model('post_model');}
 		redirect('post');}
 	 else {redirect('login');}}
 
-	function archive_announcement(){if($this->session->userdata('logged_in'))
-		{$data = array (
-			'post_title' => $this->input->post('announce_title'),
-			'post_body' => $this->input->post('announce_content'),
-			'post_author' => $id,
-			'post_type' => 1
-		); $this->post_model->create_announcement($data);} 
+	function archive_announcement($id){if($this->session->userdata('logged_in'))
+		{
+		$data = array (
+			'post_status' => 0
+		); $this->post_model->archive_announcement($data,$id);
+		redirect('post');} 
 	 else {redirect('login');}}
 
-	function archive_event(){if($this->session->userdata('logged_in'))
-		{$data = array (
-			'post_title' => $this->input->post('announce_title'),
-			'post_body' => $this->input->post('announce_content'),
-			'post_author' => $id,
-			'post_type' => 1
-		); $this->post_model->create_announcement($data);} 
+	function archive_event($id){if($this->session->userdata('logged_in'))
+		{
+		$data = array (
+			'post_status' => 0
+		); $this->post_model->archive_event($data,$id);
+		redirect('post');} 
 	 else {redirect('login');}}
 
 }

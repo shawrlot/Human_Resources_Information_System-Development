@@ -56,8 +56,8 @@ $route['start'] = 'evaluation/start_evaluation';
 $route['evaluation-begin'] = 'evaluation/create_session';
 $route['introduction'] = 'evaluation/session_introduction';
 $route['submit_answer'] = 'evaluation/session_submit';
-
-
+$route['posts/archive_announcement/(:any)'] = 'posts/archive_announcement/$1';
+$route['employees/archive_employee/(:any)'] = 'employees/archive_employee/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
