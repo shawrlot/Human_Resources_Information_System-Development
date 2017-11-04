@@ -9,7 +9,6 @@ class evaluation_model extends CI_MODEL {
 	}
 	public function get_evaluated(){
 		 return $this->db
-
 		 		->join('pin','session_pin=pin_id')
 		 		->join('load','pin_load=load_id')
 		 		->join('employee','load_employee=employee_id')
