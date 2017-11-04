@@ -37,4 +37,10 @@ class post_model extends CI_Model {
 	public function view_post($id){
 
 	}
+	function create_event($data){
+		$this->db->insert('post',$data);
+	}
+	function create_announcement($data){
+		$this->db->insert('post',$data);
+	}
 }
