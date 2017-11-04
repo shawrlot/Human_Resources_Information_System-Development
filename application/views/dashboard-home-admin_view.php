@@ -83,6 +83,7 @@ switch ($active_filter) {
 		  <div class="card-body pt-5 p-4">
 		    <h4 class=""><strong><?php echo highlight_phrase(word_limiter($post['post_title'], 100),$keyword_here, '<span style="font-weight:bold;">', '</span>');?></strong></h4>
 		   <p class="card-text"><small class="text-muted"><em><?php echo $post['account_username'];?> | Posted at <?php echo $post['post_dateCreated'];?></em></small></p>
+
 		    <p><?php echo highlight_phrase(word_limiter($post['post_body'], 100),$keyword_here, '<span style="font-weight:bold;">', '</span>');?></p>
 		    <a href="<?php echo base_url('post/archive_announcement/'.$id)?>" class ="btn mt-3 btn-success f-normal c-radius float-right">Archive</a>
 		    <button type="button" class="btn mt-3 btn-post f-normal c-radius float-right mr-2">Read More</button>

@@ -10,7 +10,7 @@ class Evaluation extends CI_Controller {
 		if ($this->session->userdata('logged_in')) {
 			$data['title'] = 'Employee';
 			$data['active'] = 'evaluation';
-			
+			$data['sessions'] = $this->evaluation_model->get_evaluated();
 			$this->load->view('evaluation_view',$data);
 		}
 		else{
