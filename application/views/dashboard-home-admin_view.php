@@ -36,14 +36,18 @@ switch ($active_filter) {
 			    <a class="nav-link <?php echo $event ?> btn f-bold c-raduis" href="?filter=event">Events</a>
 			  </li>
 			  <li class="ml-lg-auto">
+
 			  	<form class="form-inline">
+			 
 			  		<input class="form-control search-box c-raduis" type="search" name="search" placeholder="Search" aria-label="Search">
+
 			    </form>
+
 			  </li>
+
 			</ul>
 		</div>
 	<?php foreach ($posts as $post) { 
-
 
 		if ($post['type_name']=='event') {?>
 				<div class=" mb-3 col-11 card pl-0 pr-0 mx-auto shadow-light c-raduis">
@@ -55,7 +59,7 @@ switch ($active_filter) {
 						  		<h5 class="mt-0"><small><?php echo date('l', strtotime($post['post_when'])) ?></small></h5>
 						  	</div>
 						  </div>
-						  <div class="mt-2 pt-3 pb-4 pl-4 pr-2 ml-2 w-100">
+						  <div class="mt-2 pt-3 pb-4 pl-4 pr-2 ml-2">
 						  	<h3 class="p-0 m-0 f-bold"><?php echo highlight_phrase(word_limiter($post['post_title'], 100),$keyword_here, '<span style="font-weight:bold;">', '</span>');?></h3>
 						  	<p class="card-text pt-1"><small class="text-muted"><?php echo $post['account_username'];?> | Posted at 10-24-2017 16:45</small></p>
 								  	<p><?php echo highlight_phrase(word_limiter($post['post_body'], 100),$keyword_here, '<span style="font-weight:bold;">', '</span>');?></p>
@@ -86,26 +90,95 @@ switch ($active_filter) {
 <!-- 	
 		<button type="button" class="btn btn-primary floating-btn" data-toggle="modal" data-target="#exampleModal"><i class="material-icons white-text mx-auto pt-1">add</i></button> -->
 		<!-- Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		        <h5 class="modal-title" id="exampleModalLabel">Make Post</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
-		      <div class="modal-body">
-		        ...
-		      </div>
-		      <div class="modal-footer">
+		    <div class="modal-body">
+
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="announce-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Create Announcement</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="event-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Create Event</a>
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+  
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="announce-tab">
+	<form method="post" action="<?php echo base_url('post/create_announcement')?>">  
+		<div class="form-group">
+ 		 <label for="inputsm">Title</label>
+ 		 <input class="form-control input-sm" id="inputsm" type="text" name="announce_title" placeholder="Title">
+		</div>
+ 				
+		<div class="form-group">
+ 		 <label for="comment">Description</label>
+ 		 <textarea class="form-control" rows="5" id="comment" placeholder="Content" name="announce_content"></textarea>
+		</div>
+
+		<div class="modal-footer">
+		 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		 <button type="submit" class="btn btn-primary">Save changes</button>
+		</div>
+	</form>
+  </div>
+
+
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="event-tab">
+	<form method="post" action="<?php echo base_url('post/create_event')?>">  
+
+		<div class="form-group">
+ 		 <label for="inputsm">Title</label>
+		  <input class="form-control input-sm" id="inputsm" type="text" name="event_title" placeholder="Title">
+		</div>
+
+		<div class="form-group">
+		  <label for="inputsm">Event Date</label>
+		  <input class="form-control input-sm" id="inputsm" type="date" name="event_date" placeholder="Event Date">
+		</div>
+		 				
+		<div class="form-group">
+		  <label for="comment">Description</label>
+		  <textarea class="form-control" rows="5" id="comment" placeholder="Description" name="event_content"></textarea>
+		</div>
+ 		
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		  <button type="submit" class="btn btn-primary">Save changes</button>
+		</div>
+		
+ 	</form>	
+  </div>
+ 
+
+</div>
+
+   
+</div>
+<!--		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
-		      </div>
+		        <button type="submit" class="btn btn-primary">Save changes</button>
+		      </div>-->
 		    </div>
 		  </div>
 		</div>
+
     <footer class="footer fixed-bottom pb-4 pr-3">
       <button type="button" class="btn btn-primary floating-btn float-right" data-toggle="modal" data-target="#exampleModal"><i class="material-icons white-text mx-auto pt-1">add</i></button>
     </footer>
 <?php include 'footer.php' ?>
+
+<!-- 	
+		<button type="button" class="btn btn-primary floating-btn" data-toggle="modal" data-target="#exampleModal"><i class="material-icons white-text mx-auto pt-1">add</i></button> -->
+		<!-- Modal -->
+		

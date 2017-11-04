@@ -25,6 +25,7 @@ class authentication_model extends CI_Model {
 											  employee_address,
 											  employee_email,
 											  account_username,
+											  employee_account,
 											  civilStatus_name,
 											  religion_name,
 											  status_name,
