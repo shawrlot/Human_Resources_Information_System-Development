@@ -8,7 +8,14 @@ class evaluation_model extends CI_MODEL {
 		$this->db->db_debug = FALSE;
 	}
 	public function get_evaluated(){
-		
+		 return $this->db
+
+		 		->join('pin','session_pin=pin_id')
+		 		->join('load','pin_load=load_id')
+		 		->join('employee','load_employee=employee_id')
+		 		->join('subject','load_subject=subject_id')
+		 		->order_by('session_dateCreated','DESC')
+				 ->get('session')->result_array();
 	}
 	public function pin_check($pin){
 		if ($pin_details = $this->db->where('pin_code',$pin)->get('pin')->result_array()){
