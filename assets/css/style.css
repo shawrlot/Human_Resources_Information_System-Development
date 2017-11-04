@@ -172,6 +172,16 @@ p, h6 {
 	border: solid 1px #2196F3;
 	color: #fff;
 }
+.btn-success {
+	background: none;
+	border: solid 1px #2196F3;
+	color: #2196F3;
+}
+.btn-success:hover {
+	background: #2196F3;
+	border: solid 1px #2196F3;
+	color: #fff;
+}
 .search-box {
 	background: none;
 }
