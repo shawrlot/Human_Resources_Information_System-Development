@@ -43,4 +43,12 @@ class Employee extends CI_Controller {
 	} else { redirect('login');}
 }
 
+	function archive_employee($id){if($this->session->userdata('logged_in'))
+		{
+		$data = array (
+			'employee_status' => 2
+		); $this->employee_model->archive_employee($data,$id);
+		redirect('employee');} 
+	 else {redirect('login');}}
+
 }

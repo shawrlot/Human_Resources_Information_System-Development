@@ -30,14 +30,17 @@
 			  </thead>
 			  <tbody>
 
-			  	<?php foreach ($employees as $employee) {?>
-			    <tr>
+			  	<?php foreach ($employees as $employee) {
+			  	$id = $employee['employee_id'];
+			   ?> <tr>
 			      <th scope="row" class="f-light em-f"><?php echo $employee['employee_id'] ?></th>
 			      <td class="f-light text-mgray em-f"><?php echo $employee['employee_lastName'] ?></td>
 			      <td class="f-light text-mgray em-f"><?php echo $employee['employee_firstName'] ?></td>
 			      <td class="f-light text-mgray em-f"><?php echo $employee['department_name'] ?></td>
 			      <td class="f-light text-mgray em-f text-center"><?php echo $employee['status_name'] ?></td>
+			      <td><a href="<?php echo base_url('employee/archive_employee/'.$id); ?>" class ="btn  btn-success f-normal c-radius float-right ">Archive</a></td>
 			    </tr>
+
 			  <?php } ?>
 
 			  </tbody>

@@ -25,33 +25,47 @@ $this->load->model('post_model');}
 		}	
 	}
 
-	function create_announcement(){if($this->session->userdata('logged_in')){
-		$sess = $this->session->userdata('logged_in');
+	function create_announcement(){if($this->session->userdata('logged_in'))
+		{$sess = $this->session->userdata('logged_in');
 		$id = $sess['employee_account'];
-		 date_default_timezone_set('Asia/Manila');
-		 $data = array (
+		date_default_timezone_set('Asia/Manila');
+		$data = array (
 			'post_title' => $this->input->post('announce_title'),
 			'post_body' => $this->input->post('announce_content'),
 			'post_author' => $id,
 			'post_type' => 1
-		);
-		$this->post_model->create_announcement($data);
-		redirect('post');
-	} else { redirect('login');}
-}
+		); $this->post_model->create_announcement($data);
+		redirect('post');}
+	 else {redirect('login');}}
 
-	function create_event(){if($this->session->userdata('logged_in')){
-		$sess = $this->session->userdata('logged_in');
+	function create_event(){if($this->session->userdata('logged_in'))
+		{$sess = $this->session->userdata('logged_in');
 		$id = $sess['employee_account'];
+		date_default_timezone_set('Asia/Manila');
 		$data = array (
 			'post_title' => $this->input->post('event_title'),
 			'post_when' => $this->input->post('event_date'),
 			'post_body' => $this->input->post('event_content'),
 			'post_author' => $id,
 			'post_type' => 2
-		);
-		$this->post_model->create_event($data);
-		redirect('post');
-	} else { redirect('login');}
-}
+		); $this->post_model->create_event($data);
+		redirect('post');}
+	 else {redirect('login');}}
+
+	function archive_announcement($id){if($this->session->userdata('logged_in'))
+		{
+		$data = array (
+			'post_status' => 0
+		); $this->post_model->archive_announcement($data,$id);
+		redirect('post');} 
+	 else {redirect('login');}}
+
+	function archive_event($id){if($this->session->userdata('logged_in'))
+		{
+		$data = array (
+			'post_status' => 0
+		); $this->post_model->archive_event($data,$id);
+		redirect('post');} 
+	 else {redirect('login');}}
+
 }

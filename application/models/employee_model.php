@@ -27,6 +27,7 @@ class employee_model extends CI_Model {
 	}
 	function get_employee(){
 		return $this->db
+					->where('employee_status',1)
 					->join('department','employee.employee_department=department.department_id','left')
 					->join('status','employee.employee_status=status.status_id','left')
 					->get('employee')->result_array();
@@ -36,5 +37,10 @@ class employee_model extends CI_Model {
 	}
 	function insert_employee($data){
 		$this->db->insert('employee',$data);
+	}
+
+	function archive_employee($data,$id){
+		$this->db->where('employee_id',$id);
+		$this->db->update('employee',$data);
 	}
 }

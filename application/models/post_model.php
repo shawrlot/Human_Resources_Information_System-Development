@@ -12,13 +12,13 @@ class post_model extends CI_Model {
 			$filter = array(
 			'type_name'=>$filter
 		);
-		$result =  $this->db->or_where($filter)->join('account','post.post_author=account.account_id')
+		$result =  $this->db->where('post_status',1)->or_where($filter)->where('post_status',1)->join('account','post.post_author=account.account_id')
 											->join('type','post.post_type=type.type_id')
 											->order_by('post_dateCreated','DESC')
 											->get('post')->result_array();
 		}
 		else{
-			$result =  $this->db->join('account','post.post_author=account.account_id')
+			$result =  $this->db->where('post_status',1)->join('account','post.post_author=account.account_id')
 											->join('type','post.post_type=type.type_id')
 											->order_by('post_dateCreated','DESC')
 											->get('post')->result_array();
@@ -45,5 +45,13 @@ class post_model extends CI_Model {
 	}
 	function create_announcement($data){
 		$this->db->insert('post',$data);
+	}
+	function archive_event($data,$id){
+		$this->db->where('post_id',$id);
+		$this->db->update('post',$data);
+	}
+	function archive_announcement($data,$id){
+		$this->db->where('post_id',$id);
+		$this->db->update('post',$data);
 	}
 }
