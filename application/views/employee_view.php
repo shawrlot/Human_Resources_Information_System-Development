@@ -1,3 +1,4 @@
+
 <?php include 'header.php' ?>
 <?php include'navigation.php' ?>
 
@@ -12,10 +13,29 @@
 		</select>
 	</div>
 	<div class="row pb-5">
-		<div class="col-11 mt-4 p-4 mx-auto card shadow-light">
+		<div class="col-5 mt-4 p-4 mx-auto card shadow-light">
 			<h4 class="m-0 p-0 f-bold">Analytics</h4>
 			<hr class="border">
-			<h1 class="text-center pb-4">Coming Soon</h1>
+
+
+<div class="container">
+    <blockquote class="quote-box">
+			<h1 class="text-center pb-4"><?php foreach($ages as $age) {
+			echo $age; 
+			} 
+			?></h1><center>Nearly Retirees</center>
+    </blockquote>   
+</div>
+<div class="container">
+  <blockquote class="quote-box1">
+	<h1 class="text-center pb-4"><?php foreach($ages as $age) {
+			print_r($count_rows);
+			} 
+			?></h1><center>Total Employees</center>
+    </blockquote>
+</div>
+
+
 		</div>
 		<div class="mt-3 pt-1 col-11 p-0 mx-auto">
 			<table class="table table-hover shadow-light">
@@ -24,6 +44,8 @@
 			      <th scope="col" class="text-mgray em-f border-0">ID No.</th>
 			      <th scope="col" class="text-mgray em-f border-0">Last Name</th>
 			      <th scope="col" class="text-mgray em-f border-0">First Name</th>
+			      <th scope="col" class="text-mgray em-f border-0">Birthdate</th>
+			      <th scope="col" class="text-mgray em-f border-0">Age</th>
 			      <th scope="col" class="text-mgray em-f border-0">Department</th>
 			      <th scope="col" class="text-mgray em-f border-0 text-center">Status</th>
 			    </tr>
@@ -36,8 +58,14 @@
 			      <th scope="row" class="f-light em-f"><?php echo $employee['employee_id'] ?></th>
 			      <td class="f-light text-mgray em-f"><?php echo $employee['employee_lastName'] ?></td>
 			      <td class="f-light text-mgray em-f"><?php echo $employee['employee_firstName'] ?></td>
+			      <td class="f-light text-mgray em-f"><?php echo date("M d, Y", strtotime($employee['employee_dob']));?></td>
+			      <td class="f-light text-mgray em-f"><?php
+									$newDate = date(" M d, Y", strtotime($employee['employee_dob']));
+									echo date_diff(date_create($newDate),date_create('now'))->y;
+									?></td>
 			      <td class="f-light text-mgray em-f"><?php echo $employee['department_name'] ?></td>
 			      <td class="f-light text-mgray em-f text-center"><?php echo $employee['status_name'] ?></td>
+				</td>
 			      <td><a href="<?php echo base_url('employee/archive_employee/'.$id); ?>" class ="btn  btn-success f-normal c-radius float-right ">Archive</a></td>
 			    </tr>
 

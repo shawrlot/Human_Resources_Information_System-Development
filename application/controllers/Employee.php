@@ -7,6 +7,19 @@ class Employee extends CI_Controller {
 		$this->load->model('employee_model');
 	}
 	public function index(){if($this->session->userdata('logged_in')){
+		$rows = $this->employee_model->get_employee();
+		$count = 0;
+		foreach($rows as $row) {
+		$newDate = date(" M d, Y", strtotime($row['employee_dob']));
+        $age = date_diff(date_create($newDate),date_create('now'))->y;
+		if($age >= 60) {
+		$count++;}
+		}
+		$arr = array (
+		'ages' => $count
+		);
+		$data['ages'] = $arr;
+		$data['count_rows'] = $this->db->count_all('employee');
 		$data['title'] = 'Employee';
 		$data['active'] = 'employee';
 		$data['filters'] = $this->employee_model->get_filter();
