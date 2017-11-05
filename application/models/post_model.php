@@ -14,11 +14,13 @@ class post_model extends CI_Model {
 		);
 		$result =  $this->db->or_where($filter)->join('account','post.post_author=account.account_id')
 											->join('type','post.post_type=type.type_id')
+											->order_by('post_dateCreated','DESC')
 											->get('post')->result_array();
 		}
 		else{
 			$result =  $this->db->join('account','post.post_author=account.account_id')
 											->join('type','post.post_type=type.type_id')
+											->order_by('post_dateCreated','DESC')
 											->get('post')->result_array();
 		}
 		
@@ -28,6 +30,7 @@ class post_model extends CI_Model {
 		$result =  $this->db->like('post_title',$keyword)->or_like('post_body',$keyword)
 											->join('account','post.post_author=account.account_id')
 											->join('type','post.post_type=type.type_id')
+											->order_by('post_dateCreated','DESC')
 											->get('post')->result_array();
 		return $result;
 	}
