@@ -49,7 +49,9 @@ class Employee extends CI_Controller {
 			'employee_status' => 1,
 			'employee_employmentStatus' => $this->input->post('empstatus'),
 			'employee_position' => $this->input->post('empposition'),
-			'employee_department' => $this->input->post('dept')
+			'employee_department' => $this->input->post('dept'),
+			'employee_sss' => $this->input->post('sss'),
+			'employee_tin' => $this->input->post('tin')
 		);
 		$this->employee_model->insert_employee($data);
 		redirect('employee');
@@ -61,6 +63,36 @@ class Employee extends CI_Controller {
 		$data = array (
 			'employee_status' => 2
 		); $this->employee_model->archive_employee($data,$id);
+		redirect('employee');} 
+	 else {redirect('login');}}
+
+	function update_employee($id){if($this->session->userdata('logged_in'))
+		{
+			$data = $this->employee_model->update_employee($id);
+			echo json_encode($data);
+	
+	} 
+	 else {redirect('login');}}
+
+	 function edit_employee(){if($this->session->userdata('logged_in'))
+		{
+		$id = $this->input->post('updateidnum');
+		$data = array (
+			'employee_lastName' => $this->input->post('updatelname'),
+			'employee_firstName' => $this->input->post('updatefname'),
+			'employee_middleName' => $this->input->post('updatemname'),
+			'employee_dob' => $this->input->post('updatebirthdate'),
+			'employee_address' => $this->input->post('updateaddress'),
+			'employee_email' => $this->input->post('updateemail'),
+			'employee_gender' => $this->input->post('updategender'),
+			'employee_civilStatus' => $this->input->post('updatecivilstatus'),
+			'employee_religion' => $this->input->post('updatereligion'),
+			'employee_employmentStatus' => $this->input->post('updateempstatus'),
+			'employee_position' => $this->input->post('updateempposition'),
+			'employee_department' => $this->input->post('updatedept'),
+			'employee_sss' => $this->input->post('updatesss'),
+			'employee_tin' => $this->input->post('updatetin')
+		); $this->employee_model->edit_employee($data,$id);
 		redirect('employee');} 
 	 else {redirect('login');}}
 

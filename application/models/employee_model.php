@@ -43,4 +43,15 @@ class employee_model extends CI_Model {
 		$this->db->where('employee_id',$id);
 		$this->db->update('employee',$data);
 	}
+
+	function update_employee($id){
+	$query = $this->db->get_where('employee',array('employee_id'=>$id));
+		return $query->row();
+	}
+
+	function edit_employee($data,$id){
+		$this->db->where('employee_id',$id);
+		$this->db->update('employee',$data);
+	}
+
 }

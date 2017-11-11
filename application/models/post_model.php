@@ -12,7 +12,7 @@ class post_model extends CI_Model {
 			$filter = array(
 			'type_name'=>$filter
 		);
-		$result =  $this->db->where('post_status',1)->or_where($filter)->where('post_status',1)->join('account','post.post_author=account.account_id')
+		$result =  $this->db->where('post_status',1)->where($filter)->where('post_status',1)->join('account','post.post_author=account.account_id')
 											->join('type','post.post_type=type.type_id')
 											->get('post')->result_array();
 		}
@@ -34,20 +34,44 @@ class post_model extends CI_Model {
 	public function add_post(){
 		return 'echo';
 	}
-	public function view_post($id){
-
+	public function view_post($slug){
+		$this->db->join('account','post.post_author=account.account_id');
+		$this->db->join('type','post.post_type=type.type_id');
+		$query = $this->db->get_where('post', array('post_slug'=>$slug));
+		return $query->result_array();
 	}
 	function create_event($data){
 		$this->db->insert('post',$data);
 	}
 	function create_announcement($data){
-		$this->db->insert('post',$data);
+		$this->db->insert('post',$data,$slug);
 	}
 	function archive_event($data,$id){
 		$this->db->where('post_id',$id);
 		$this->db->update('post',$data);
 	}
 	function archive_announcement($data,$id){
+		$this->db->where('post_id',$id);
+		$this->db->update('post',$data);
+	}
+
+	function update_announcement($id){
+	$query = $this->db->get_where('post',array('post_id'=>$id));
+		return $query->row();
+	}
+
+	function edit_announcement($data,$id){
+		$this->db->where('post_id',$id);
+		$this->db->update('post',$data);
+	}
+
+
+	function update_event($id){
+	$query = $this->db->get_where('post',array('post_id'=>$id));
+		return $query->row();
+	}
+
+	function edit_event($data,$id){
 		$this->db->where('post_id',$id);
 		$this->db->update('post',$data);
 	}

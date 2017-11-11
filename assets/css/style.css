@@ -344,3 +344,9 @@ label > input:checked + #img1{ /* (RADIO CHECKED) IMAGE STYLES */
 	padding: 25px 5px 30px 5px;
 }
 
+.e-dropdown{
+	text-align-last: left;
+	width: 100%;
+	margin-top: 0;
+	margin-bottom: 10px;
+}

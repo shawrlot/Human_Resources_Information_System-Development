@@ -4,13 +4,13 @@
 
 <div class="Home m3">
 	<div class="Home ml-4 pt-4">
-		<select class="e-dropdown form-control ml-4 mt-3 shadow-light text-center f-bold">
+	<!--	<select class="e-dropdown-filter form-control ml-4 mt-3 shadow-light text-center f-bold">
 		  <option class="text-center" seleted disabled>No filter</option>
 		  <?php foreach ($filters as $filter) {?>
 		 	 <option class="text-center"><a href=""><?php echo $filter['department_name'] ?></a></option>
 		 <?php
 		  } ?>
-		</select>
+		</select>-->
 	</div>
 	<div class="row pb-5">
 		<div class="col-5 mt-4 p-4 mx-auto card shadow-light">
@@ -66,7 +66,8 @@
 			      <td class="f-light text-mgray em-f"><?php echo $employee['department_name'] ?></td>
 			      <td class="f-light text-mgray em-f text-center"><?php echo $employee['status_name'] ?></td>
 				</td>
-			      <td><a href="<?php echo base_url('employee/archive_employee/'.$id); ?>" class ="btn  btn-success f-normal c-radius float-right ">Archive</a></td>
+					<td>
+			      <a href="<?php echo base_url('employee/archive_employee/'.$id); ?>" class ="btn  btn-success f-normal c-radius float-right ">Archive</a><button onclick="update_employee('<?php echo $employee['employee_id'];?>');" class ="btn  btn-success f-normal c-radius float-right mr-2 ">View & Update</button></td>
 			    </tr>
 
 			  <?php } ?>
@@ -76,9 +77,12 @@
 		</div>
 	</div>
 </div>
+
+
+<!--Insert Employee Modal-->
 <form method="post" action="<?php echo base_url('employee/insert_employee')?>">
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog" role="document">
+		  <div classs="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
@@ -191,6 +195,16 @@
 		 				<?php } ?>
 					</select>
 
+				<div class="form-group">
+  					  <label for="inputsm">SSS #</label>
+  					  <input class="form-control input-sm" id="inputsm" type="text" name="sss" placeholder="SSS #">
+ 				</div>
+
+ 				<div class="form-group">
+  					  <label for="inputsm">TIN #</label>
+  					  <input class="form-control input-sm" id="inputsm" type="text" name="tin" placeholder="TIN #">
+ 				</div>
+
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -200,6 +214,137 @@
 		  </div>
 		</div>
 	</form>
+
+<!--Edit Employee Modal-->
+<form method="post" action="<?php echo base_url('employee/edit_employee')?>">
+	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Edit Employee</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body"><b>
+    	
+    	<div class="form-group">
+  					  <label for="inputsm">ID No.</label>
+  					  <input class="form-control input-sm"  id="inputsm" type="text" name="updateidnum" readonly>
+ 					 </div>
+ 				
+  					<div class="form-group">
+  					  <label for="inputsm">Last Name</label>
+  					  <input class="form-control input-sm" id="inputsm" type="text" name="updatelname" placeholder="Last Name">
+ 					 </div>
+ 				
+  					<div class="form-group">
+  					  <label for="inputsm">First Name</label>
+  					  <input class="form-control input-sm" id="inputsm" type="text" name="updatefname" placeholder="Last Name">
+ 					 </div>
+ 				
+
+  					<div class="form-group">
+  					  <label for="inputsm">Middle Name</label>
+  					  <input class="form-control input-sm" id="inputsm" type="text" name="updatemname" placeholder="Middle Name">
+ 					 </div>
+
+					<div class="form-group">
+  					  <label for="inputsm">Date of Birth</label>
+  					  <input class="form-control input-sm" id="inputsm" type="date" name="updatebirthdate" placeholder="Birth Date">
+ 					 </div>
+
+
+    	  					<div class="form-group">
+  					  <label for="inputsm">Address</label>
+  						<textarea class="form-control" rows="2" id="input" name="updateaddress" placeholder="Home Address"></textarea>
+ 					 </div>
+
+ 					<div class="form-group">
+  					  <label for="inputsm">Email</label>
+  					  <input class="form-control input-sm" id="inputsm" type="text" name="updateemail" placeholder="Email">
+ 					 </div>
+    	
+    	<label for="inputsm">Gender</label>
+ 					<select class="e-dropdown form-control shadow-light text-center f-bold" name="updategender">
+					  <?php foreach ($genders as $gender) {?>
+		 	 			<option value="<?php echo $gender['gender_id'] ?>"> 
+		 	 				<?php echo $gender['gender_name'] ?> 
+		 	 			</option>
+		 				<?php } ?>
+					</select> 					
+
+				<label for="inputsm">Civil Status</label>
+ 					<select class="e-dropdown form-control shadow-light text-center f-bold" name="updatecivilstatus">
+					  <?php foreach ($cstatus as $civil) {?>
+		 	 			<option value="<?php echo $civil['civilStatus_id'] ?>"> 
+		 	 				<?php echo $civil['civilStatus_name'] ?> 
+		 	 			</option>
+		 				<?php } ?>
+					</select>
+
+				<label for="inputsm">Religion</label>
+ 					<select class="e-dropdown form-control shadow-light text-center f-bold" name="updatereligion">
+					  <?php foreach ($religion as $rel) {?>
+		 	 			<option value="<?php echo $rel['religion_id'] ?>"> 
+		 	 				<?php echo $rel['religion_name'] ?> 
+		 	 			</option>
+		 				<?php } ?>
+					</select>		
+
+				<label for="inputsm">Employment Status</label>
+ 					<select class="e-dropdown form-control shadow-light text-center f-bold" name="updateempstatus">
+					  <?php foreach ($empstatus as $employment) {?>
+		 	 			<option value="<?php echo $employment['employmentStatus_id'] ?>"> 
+		 	 				<?php echo $employment['employmentStatus_name'] ?> 
+		 	 			</option>
+		 				<?php } ?>
+					</select> 
+
+				<label for="inputsm">Department</label>
+ 					<select class="e-dropdown form-control shadow-light text-center f-bold" name="updatedept">
+					  	<?php foreach ($filters as $filter) {?>
+		 	 			<option value="<?php echo $filter['department_id'] ?>"> 
+		 	 				<?php echo $filter['department_name'] ?> 
+		 	 			</option>
+		 				<?php } ?>
+					</select>
+
+
+				<label for="inputsm">Employee Position</label>
+ 					<select class="e-dropdown form-control shadow-light text-center f-bold" name="updateempposition">
+					  <?php foreach ($empposition as $position) {?>
+		 	 			<option value="<?php echo $position['position_id'] ?>"> 
+		 	 				<?php echo $position['position_name'] ?> 
+		 	 			</option>
+		 				<?php } ?>
+					</select>
+
+				<div class="form-group">
+  					  <label for="inputsm">SSS #</label>
+  					  <input class="form-control input-sm" id="inputsm" type="text" name="updatesss" placeholder="SSS number">
+ 				</div>
+
+ 				<div class="form-group">
+  					  <label for="inputsm">TIN #</label>
+  					  <input class="form-control input-sm" id="inputsm" type="text" name="updatetin" placeholder="TIN number">
+ 				</div>
+
+		
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Save changes</button>
+		      </div>
+		 
+
+
+		</b>  </div>
+		</div>
+    </div>
+  </div>
+
+</form>
+
     <footer class="footer fixed-bottom pb-4 pr-3">
       <button type="button" class="btn btn-primary floating-btn float-right" data-toggle="modal" data-target="#exampleModal"><i class="material-icons white-text mx-auto pt-1">add</i></button>
     </footer>
